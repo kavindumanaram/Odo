@@ -61,14 +61,18 @@
 
 <div class="main_container">
 
-	<div class="col-md-3 left_col">
-		<!-- left navigation -->
-		@Html.Partial("LeftSideMenu");
-		<!-- /left navigation -->
-	</div>
+<div class="col-md-3 left_col">
+	@Html.Partial("LeftSideMenu");
+</div>
 
 <!-- top navigation -->
-	@Html.Partial("TopNavigation");
+<div class="top_nav">
+
+	<div class="nav_menu">
+		@Html.Partial("TopNavigation");
+	</div>
+
+</div>
 <!-- /top navigation -->
 
 <!-- page content -->
