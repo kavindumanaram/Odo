@@ -1,0 +1,19 @@
+﻿@model Odo.Models.Organization
+	
+<h1>Add New Organization</h1>
+@using (Html.BeginForm("save", "Organization", FormMethod.Post, new {id = "organizationSave"}))
+{
+	if (Model != null && Model.OrganizationId > 0)
+	{
+		@Html.HiddenFor(a => a.OrganizationId);
+	}
+
+	<div class ="form-group">
+		<label>Organization Name</label>
+		@Html.TextBoxFor(a => a.Name, new { @class = "form-control"})
+	</div>
+
+	<div>
+		<input type="submit" value="save">
+	</div>
+}
