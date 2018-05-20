@@ -415,6 +415,7 @@
     <Content Include="Scripts\js\datatables\json\scroller-demo.json" />
     <Content Include="Scripts\js\maps\us-unemployment.json" />
     <Content Include="Views\Shared\LeftSideMenu.cshtml" />
+    <Content Include="Views\Shared\TopNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
