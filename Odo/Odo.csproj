@@ -444,6 +444,9 @@
     <Content Include="fonts\scss\_variables.scss" />
     <Content Include="js\datatables\json\scroller-demo.json" />
     <Content Include="js\maps\us-unemployment.json" />
+    <Content Include="Views\Shared\LeftMenu.cshtml" />
+    <Content Include="Views\Shared\TopNavigation.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
