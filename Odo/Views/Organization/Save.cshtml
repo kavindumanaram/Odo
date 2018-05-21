@@ -1,0 +1,26 @@
+﻿@model Odo.Models.Organization
+	
+<h2>Save</h2>
+@using (Html.BeginForm("save", "Organization", FormMethod.Post, new {id = "popupForm"}))
+{
+	if (Model != null && Model.OrganizationId > 0)
+	{
+		@Html.HiddenFor(a => a.OrganizationId)
+	}
+
+	<div class="form-group">
+		<label>organization Name</label>
+		@Html.TextBoxFor(a=>a.Name,new { @class = "form-control" })
+	@*	@Html.ValidationMessageFor(a=>a.FirstName)*@
+	</div>
+	<div class="form-group">
+		<label>Address</label>
+		@Html.TextBoxFor(a => a.Address, new { @class = "form-control" })
+		@*@Html.ValidationMessageFor(a => a.LastName)*@
+	</div>
+
+	<div>
+		<input type="submit" value="Save" />
+	</div>
+
+}

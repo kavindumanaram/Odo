@@ -180,6 +180,7 @@
       <DependentUpon>MyModel.edmx</DependentUpon>
     </Content>
     <Content Include="Views\Organization\Index.cshtml" />
+    <Content Include="Views\Organization\Save.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
