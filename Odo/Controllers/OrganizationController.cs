@@ -67,5 +67,34 @@ namespace Odo.Controllers
 			}
 			return new JsonResult { Data = new { status = status } };
 		}
+
+		[HttpGet]
+		public ActionResult Delete(string organizationId)
+		{
+			bool status = false;
+			using (OdoEntities oe = new OdoEntities())
+			{
+				int temp;
+				if (int.TryParse(organizationId, out temp))
+				{
+					var organizationobject = oe.Organizations.Where(a => a.OrganizationId == temp).FirstOrDefault();
+					if (organizationobject != null)
+					{
+						oe.Organizations.Remove(organizationobject);
+					}
+					oe.SaveChanges();
+					status = true;
+				}
+			}
+
+			if (status)
+			{
+				return View("Index");
+			}
+			else
+			{
+				return Json("Somethig went wrong !", JsonRequestBehavior.AllowGet);
+			}
+		}
 	}
 }
