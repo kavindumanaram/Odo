@@ -31,7 +31,7 @@ namespace Odo.Controllers
 			List<Organization> organizationList;
 			using (OdoEntities oe = new OdoEntities())
 			{
-				 organizationList = oe.Organizations.OrderBy(a => a.OrganizationId).ToList();
+				organizationList = oe.Organizations.OrderBy(a => a.OrganizationId).ToList();
 			}
 			//	return Json(new {Data = organizationList}, JsonRequestBehavior.AllowGet);
 			return Json(organizationList, JsonRequestBehavior.AllowGet);
@@ -95,6 +95,22 @@ namespace Odo.Controllers
 			{
 				return Json("Somethig went wrong !", JsonRequestBehavior.AllowGet);
 			}
+		}
+
+		[HttpPost]
+		public ActionResult Edit(Organization org)
+		{
+			using (OdoEntities oe = new OdoEntities())
+			{
+				var organizationObject = oe.Organizations.Where(a => a.OrganizationId == org.OrganizationId).FirstOrDefault();
+				if (organizationObject != null)
+				{
+					organizationObject.Name = org.Name;
+					organizationObject.Address = org.Address;
+				}
+				oe.SaveChanges();
+			}
+			return View("index");
 		}
 	}
 }
