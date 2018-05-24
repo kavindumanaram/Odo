@@ -1,4 +1,5 @@
 ﻿using Odo.Models;
+using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
@@ -7,7 +8,6 @@ namespace Odo.Controllers
 {
 	public class UserController : Controller
 	{
-		// GET: User
 		public ActionResult Index()
 		{
 			return View();
@@ -26,8 +26,6 @@ namespace Odo.Controllers
 		[HttpPost]
 		public ActionResult Save(User usr)
 		{
-			bool status = false;
-
 			using (OdoEntities oe = new OdoEntities())
 			{
 				if (usr.UserId > 0)
@@ -38,36 +36,41 @@ namespace Odo.Controllers
 					UserObject.Email = usr.Email;
 					UserObject.Address = usr.Address;
 					UserObject.LastActive = usr.LastActive;
-				//	status = true;
 				}
 				else
 				{
-					//save
-					try
-					{
-						oe.Users.Add(usr);
-						oe.SaveChanges();
-					}
-					catch (DbEntityValidationException dbEx)
-					{
-						foreach (var validationErrors in dbEx.EntityValidationErrors)
-						{
-							foreach (var validationError in validationErrors.ValidationErrors)
-							{
-								System.Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
-							}
-						}
-					}
-					//	status = true;
+					oe.Users.Add(usr);
 				}
-			//	oe.SaveChanges();
-			//	status = true;
+				oe.SaveChanges();
+			}
+			return View("index");
+		}
+
+		public ActionResult GetUsers()
+		{
+			List<User> users = null;
+			using (OdoEntities oe = new OdoEntities())
+			{
+				users = oe.Users.OrderBy(a => a.UserId).ToList();
 			}
 
-			if(status)
-				return View("index");
-			else
-				return Json(status, JsonRequestBehavior.AllowGet);
+			return Json(users, JsonRequestBehavior.AllowGet);
+		}
+
+		public ActionResult Delete(string userid)
+		{
+			int temp = 0;
+			if (int.TryParse(userid, out temp))
+			{
+				using (OdoEntities oe = new OdoEntities())
+				{
+					var userobject = oe.Users.Where(a => a.UserId == temp).FirstOrDefault();
+					oe.Users.Remove(userobject);
+					oe.SaveChanges();
+				}
+			}
+
+			return View("index");
 		}
 	}
 
