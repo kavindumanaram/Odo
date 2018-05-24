@@ -26,5 +26,6 @@ namespace Odo.Models
         }
     
         public virtual DbSet<Organization> Organizations { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }
