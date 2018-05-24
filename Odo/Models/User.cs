@@ -18,10 +18,7 @@ namespace Odo.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public int OrganizationId { get; set; }
         public string Address { get; set; }
         public Nullable<System.DateTime> LastActive { get; set; }
-    
-        public virtual Organization Organization { get; set; }
     }
 }
