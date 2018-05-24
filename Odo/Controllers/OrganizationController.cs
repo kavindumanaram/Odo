@@ -33,7 +33,6 @@ namespace Odo.Controllers
 			{
 				organizationList = oe.Organizations.OrderBy(a => a.OrganizationId).ToList();
 			}
-			//	return Json(new {Data = organizationList}, JsonRequestBehavior.AllowGet);
 			return Json(organizationList, JsonRequestBehavior.AllowGet);
 		}
 
